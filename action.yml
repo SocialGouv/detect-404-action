@@ -1,0 +1,29 @@
+name: "Detect 404 action"
+description: "Detect 404s on some URL"
+
+inputs:
+  url:
+    description: URL to check
+    required: true
+  output:
+    description: File to write results
+    required: true
+  depth:
+    description: wget spider depth
+    required: false
+    default: 10
+
+runs:
+  using: "composite"
+  steps:
+    - shell: bash
+      run: |
+        URL=${{ inputs.url }}
+        OUTPUT=${{ inputs.output }}
+        DEPTH=${{ inputs.depth }}
+
+        # ensure wget output is parsable
+        export LANG=en_GB.UTF-8 
+        
+        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser > $OUTPUT
+
