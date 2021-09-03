@@ -1,0 +1,19 @@
+on:
+  push:
+    branches: [ "*" ]
+  pull_request:
+    branches: [ "*" ]
+
+name: Test JS
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    name: Test sh
+    steps:
+      - uses: ./
+        with:
+          url: https://www.fabrique.social.gouv.fr
+          output: 404.json
+      - run: |
+          ls
+          cat 404.json

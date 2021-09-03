@@ -25,5 +25,19 @@ runs:
         # ensure wget output is parsable
         export LANG=en_GB.UTF-8 
         
+
+        wget -v
+        wget --level=$DEPTH --spider --recursive $URL
+
+        echo "---"
+
+        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL
+
+        echo "---"
+        
+        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser
+
+        echo "---"
+
         wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser > $OUTPUT
 
