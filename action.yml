@@ -30,17 +30,17 @@ runs:
 
         echo "---"
 
-        wget --level=$DEPTH --spider --recursive $URL
+        wget --level=$DEPTH --spider --recursive $URL || true
 
         echo "---"
 
-        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL
+        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL  || true
 
         echo "---"
         
-        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser
+        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser || true
 
         echo "---"
 
-        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser > $OUTPUT
+        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser > $OUTPUT || true
 
