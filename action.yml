@@ -24,23 +24,7 @@ runs:
 
         # ensure wget output is parsable
         export LANG=en_GB.UTF-8 
-        
 
-        wget --version
-
-        echo "---"
-
-        wget --level=$DEPTH --spider --recursive $URL || true
-
-        echo "---"
-
-        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL  || true
-
-        echo "---"
-        
-        wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser || true
-
-        echo "---"
-
+        # wget return error exit code when errors founds, prevent ction failure with `|| true`
         wget --level=$DEPTH --spider --recursive 2>&1 >/dev/null $URL | npx wget-parser > $OUTPUT || true
 
