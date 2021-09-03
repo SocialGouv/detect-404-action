@@ -26,7 +26,10 @@ runs:
         export LANG=en_GB.UTF-8 
         
 
-        wget -v
+        wget --version
+
+        echo "---"
+
         wget --level=$DEPTH --spider --recursive $URL
 
         echo "---"
